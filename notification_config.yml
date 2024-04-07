@@ -10,12 +10,12 @@ data:
     receivers:
     - name: 'notifications'
       email_configs:
-      - to: ${{ secrets.TO_USER }}
-        from: ${{ secrets.AUTH_USERNAME }}
+      - to: $TO_USER
+        from: $AUTH_USERNAME
         smarthost: smtp.gmail.com:587
-        auth_username: ${{ secrets.AUTH_USERNAME }}
-        auth_identity: ${{ secrets.AUTH_USERNAME }}
-        auth_password: ${{ secrets.AUTH_PASS }}
+        auth_username: $AUTH_USERNAME 
+        auth_identity: $AUTH_USERNAME
+        auth_password: $AUTH_PASS
         send_resolved: true
         headers:
           subject: "Prometheus - Alert"
