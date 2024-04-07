@@ -10,8 +10,8 @@ data:
     receivers:
     - name: 'notifications'
       email_configs:
-      - to: $TO_USER
-        from: $AUTH_USERNAME
+      - to: $AUTH_USERNAME
+        from: $TO_USER
         smarthost: smtp.gmail.com:587
         auth_username: $AUTH_USERNAME 
         auth_identity: $AUTH_USERNAME
