@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-alertmanager
+data:
+  alertmanager.yml: |
+    global:
+      resolve_timeout: 1m
+
+    receivers:
+    - name: 'notifications'
+      email_configs:
+      - to: ${{ secrets.TO_USER }}
+        from: ${{ secrets.AUTH_USERNAME }}
+        smarthost: smtp.gmail.com:587
+        auth_username: ${{ secrets.AUTH_USERNAME }}
+        auth_identity: ${{ secrets.AUTH_USERNAME }}
+        auth_password: ${{ secrets.AUTH_PASS }}
+        send_resolved: true
+        headers:
+          subject: "Prometheus - Alert"
+          text: "{{ range .Alerts }} Hi, \n{{ .Annotations.summary }}\n{{ .Annotations.description }} {{end}}"
+
+    route:
+      group_wait: 10s
+      group_interval: 2m
+      receiver: 'notifications'
+      repeat_interval: 2m
