@@ -1,5 +1,11 @@
 #!/bin/bash
 
+echo 'Starting Minikube'
+minikube start
+
+echo 'Creating SRE namespace....'
+kubectl create namespace sre
+
 echo 'Installing Prometheus....'
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 helm repo update
