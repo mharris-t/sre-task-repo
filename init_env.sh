@@ -20,5 +20,3 @@ echo 'Deploying application...'
 kubectl apply -f deployment.yml -n sre
 kubectl apply -f service.yml -n sre
 
-echo 'Checking service...'
-minikube service upcommerce-service -n sre
